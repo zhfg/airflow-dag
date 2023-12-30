@@ -4,7 +4,7 @@ from airflow import DAG
 from airflow.operators.empty import EmptyOperator
 
 with DAG(
-    dag_id="my_dag_name",
+    dag_id="test-dag",
     start_date=datetime.datetime(2021, 1, 1),
     schedule="@daily",
 ):
