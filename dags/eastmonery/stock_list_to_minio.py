@@ -15,7 +15,8 @@ with DAG(
         import sys, os, time
 
         print(sys.path)
-        print(os.path.dirname(__file__))
+        for dir in os.listdir(os.path.dirname(__file__)):
+            print(dir)
         from concurrent.futures import ThreadPoolExecutor, as_completed
 
         # stocks = get_all_a_stock()
