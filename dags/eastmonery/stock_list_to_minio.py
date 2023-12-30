@@ -9,7 +9,7 @@ with DAG(
 ):
     def stock_from_east_monery():
         # from .stock import get_all_a_stock, get_kline, get_stock_detail
-        from tqdm import tqdm
+        # from tqdm import tqdm
         from threading import Thread
         from time import sleep, ctime
         import sys, os, time
