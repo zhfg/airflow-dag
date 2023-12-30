@@ -19,7 +19,7 @@ with DAG(
 
     requirements = [
         'requests',
-        'logging'
+        # 'logging',
     ]
     task_1 = PythonVirtualenvOperator(
         task_id="stock_from_east_monery",
