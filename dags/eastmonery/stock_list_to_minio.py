@@ -8,19 +8,19 @@ with DAG(
     schedule="@daily",
 ):
     def stock_from_east_monery():
-        # from .stock import get_all_a_stock, get_kline, get_stock_detail
+        from eastmonery.stock import get_all_a_stock, get_kline, get_stock_detail
         # from tqdm import tqdm
         from threading import Thread
         from time import sleep, ctime
         import sys, os, time
 
-        print(sys.path)
-        for dir in os.listdir(os.path.dirname(__file__)):
-            print(dir)
+        # print(sys.path)
+        # for dir in os.listdir(os.path.dirname(__file__)):
+        #     print(dir)
         from concurrent.futures import ThreadPoolExecutor, as_completed
 
-        # stocks = get_all_a_stock()
-        # print(stocks)
+        stocks = get_all_a_stock()
+        print(stocks)
 
     requirements = [
         'requests',
