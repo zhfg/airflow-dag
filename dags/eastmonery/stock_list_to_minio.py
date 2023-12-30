@@ -12,7 +12,10 @@ with DAG(
         from tqdm import tqdm
         from threading import Thread
         from time import sleep, ctime
-        import time
+        import sys, os, time
+
+        print(sys.path)
+        print(os.path.dirname(__file__))
         from concurrent.futures import ThreadPoolExecutor, as_completed
 
         stocks = get_all_a_stock()
