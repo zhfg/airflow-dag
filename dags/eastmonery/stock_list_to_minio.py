@@ -16,12 +16,13 @@ with DAG(
 
         rsp = session.get("https://www.baidu.com")
         logger.info(rsp.text)
-        
+
     requirements = [
         'requests',
         'logging'
     ]
     task_1 = PythonVirtualenvOperator(
+        task_id="stock_from_east_monery",
         requirements=requirements,
         python_callable=stock_from_east_monery,
     )
