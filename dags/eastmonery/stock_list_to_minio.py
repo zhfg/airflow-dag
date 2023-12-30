@@ -15,7 +15,7 @@ with DAG(
         session = requests.session()
 
         rsp = session.get("https://www.baidu.com")
-        logger.info(rsp.text)
+        print(rsp.text)
 
     requirements = [
         'requests',
