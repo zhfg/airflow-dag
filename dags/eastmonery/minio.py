@@ -10,7 +10,7 @@ def create_minio_client(endpoint: str, access_key: str, secret_key:str, secure:b
     )
     return client
 
-def minio_update_file(client: Minio, bucket: str, src: io.BytesIO, dest: str):
+def minio_update_file(client: Minio, bucket: str, src: io.BytesIO, dest: str, length: int):
     found = client.bucket_exists(bucket)
     if not found:
         client.make_bucket(bucket)
@@ -19,10 +19,9 @@ def minio_update_file(client: Minio, bucket: str, src: io.BytesIO, dest: str):
         print("Bucket", bucket, "already exists")
 
     # Upload the file, renaming it in the process
-    src_length = len(src)
     client.put_object(
         bucket, dest, src,
-        length = src_length,
+        length = length,
     )
     print(
         src, "successfully uploaded as object",

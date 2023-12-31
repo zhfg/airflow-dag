@@ -33,10 +33,13 @@ with DAG(
         from concurrent.futures import ThreadPoolExecutor, as_completed
 
         stocks = get_all_a_stock()
+        stocks_str = json.dumps({"all_stocks": stocks})
+        stocks_len = len(stocks_str)
         minio_update_file(
             minio_client,
             bucket=bucket,
-            src=io.BytesIO(json.dumps({"all_stocks": stocks}).encode('utf-8')),
+            src=io.BytesIO(stocks_str.encode('utf-8')),
+            length = stocks_len,
             dest="test.json"
         )
 
