@@ -65,7 +65,7 @@ def minio_upload_stock_list(client: Minio, bucket:str, src: str):
 def minio_get_stock_list(client: Minio, bucket:str):
     dest = "all_a_stock.json"
     return minio_get_object(
-        client, dest,
+        client, bucket, dest,
     )
 
 def minio_upload_daily_kline(client: Minio, bucket: str, src: str, market: int, code: str):
