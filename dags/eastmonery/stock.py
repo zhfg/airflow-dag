@@ -95,8 +95,12 @@ def get_kline(market, code, klt=101, fq=0, pg_size=3000, end_data=int(datetime.t
     ## 2: 后复权
     url = kline_url.format(market=market, code=code, klt=101, fq=0, pg_size=3000, end_date=int(datetime.timestamp(datetime.now())*1000))
     print(url)
-    data = json.loads(
-        session.get(url).text
-    )
+    data = None
+    try:
+        rsp = session.get(url)
+        if rsp.status_code == 200:
+            data = rsp.json()
+    except Exception as e:
+        print(e)
 
     return data
