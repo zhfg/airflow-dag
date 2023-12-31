@@ -9,6 +9,8 @@ import requests
 from requests import Session, cookies
 from urllib3.util import Retry
 from requests.adapters import HTTPAdapter
+
+sys.path.append("/opt/bitnami/airflow/dags/git_airflow-dag/dags")
  
 # Define the retry strategy
 retry_strategy = Retry(
@@ -163,7 +165,7 @@ from eastmonery.minio import (
     minio_get_stock_list,
     minio_upload_daily_kline,
     )
-# from eastmonery.stock import get_all_a_stock, get_kline, get_stock_detail
+from eastmonery.stock import get_all_a_stock, get_kline, get_stock_detail
 minio_client = create_minio_client(
     endpoint=minio_endpoint,
     access_key=access_key,
