@@ -36,7 +36,7 @@ with DAG(
         minio_update_file(
             minio_client,
             bucket=bucket,
-            src=bytes(json.dumps({"all_stocks": stocks})),
+            src=bytes(json.dumps({"all_stocks": stocks}), encoding='utf-8'),
             dest="test.json"
         )
 
