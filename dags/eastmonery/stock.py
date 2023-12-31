@@ -23,29 +23,29 @@ def get_all_a_stock():
         "sh": dict(market=1, url_pattern = sh_a_url, fm=sh_fm, pre=sh_pre),
         "sz": dict(market=0, url_pattern = sz_a_url, fm=sz_fm, pre=sz_pre)
     }
-    # for market in stock_configs.keys():
-    #     config = stock_configs.get(market)
-    #     pn = 1
-    #     pz = 1000
-    #     is_last_page = False
+    for market in stock_configs.keys():
+        config = stock_configs.get(market)
+        pn = 1
+        pz = 1000
+        is_last_page = False
 
-        # while not is_last_page:
-        #     url = config.get("url_pattern").format(pn = pn, pz = pz)
-        #     pn += 1
-        #     rsp = session.get(url)
-            # if rsp.status_code == 200:
-            #     rsp_json_data_diff = json.loads(rsp.text).get("data").get("diff")
+        while not is_last_page:
+            url = config.get("url_pattern").format(pn = pn, pz = pz)
+            pn += 1
+            rsp = session.get(url)
+            if rsp.status_code == 200:
+                rsp_json_data_diff = json.loads(rsp.text).get("data").get("diff")
 
-            #     if len(rsp_json_data_diff) != pz:
-            #         is_last_page = True
-            #     for i in rsp_json_data_diff:
-            #         if i.get("f2") == '-':
-            #             continue
-            #         code = i.get("f12")
-            #         symbol = "{}{}".format(config.get("pre"), code)
-            #         name = i.get("f14")
-            #         market_code = config.get("market")
-            #         all_stock_list.append({"market": market_code, "code": code, "name": name})
+                if len(rsp_json_data_diff) != pz:
+                    is_last_page = True
+                for i in rsp_json_data_diff:
+                    if i.get("f2") == '-':
+                        continue
+                    code = i.get("f12")
+                    symbol = "{}{}".format(config.get("pre"), code)
+                    name = i.get("f14")
+                    market_code = config.get("market")
+                    all_stock_list.append({"market": market_code, "code": code, "name": name})
     return all_stock_list
 
 def get_stock_detail(market, code, end_date=int(datetime.timestamp(datetime.now())*1000)):
