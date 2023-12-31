@@ -52,7 +52,7 @@ def create_session():
     # print("======================{}=====================".format(rsp.text))
     return session
 
-session = Session()
+session = create_session()
 
 def get_all_a_stock(type="json"):
     all_stock_list = []
