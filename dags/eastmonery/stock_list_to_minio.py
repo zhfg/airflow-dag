@@ -71,7 +71,6 @@ with DAG(
         
         stocks = minio_get_stock_list(minio_client, bucket)
         for stock in stocks.get("all_stocks"):
-            print(stock, type(stock))
             name = stock.get("name")
             market=stock.get("market")
             code = stock.get("code")
