@@ -1,4 +1,5 @@
 from minio import Minio
+import io
 
 
 def create_minio_client(endpoint: str, access_key: str, secret_key:str, secure:bool = False):
@@ -9,7 +10,7 @@ def create_minio_client(endpoint: str, access_key: str, secret_key:str, secure:b
     )
     return client
 
-def minio_update_file(client: Minio, bucket: str, src: bytes, dest: str):
+def minio_update_file(client: Minio, bucket: str, src: io.BytesIO, dest: str):
     found = client.bucket_exists(bucket)
     if not found:
         client.make_bucket(bucket)
