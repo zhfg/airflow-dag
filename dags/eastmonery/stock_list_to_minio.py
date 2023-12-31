@@ -173,4 +173,11 @@ with DAG(
         python_callable=daily_kline_from_east_monery,
     )
 
-    task_1 >> task_2
+    task_3 = PythonVirtualenvOperator(
+        task_id = "daily_kline_from_east_monery",
+        requirements=requirements,
+        python_callable=find_want_stocks,
+    )
+
+    # task_1 >> task_2
+    task_3
