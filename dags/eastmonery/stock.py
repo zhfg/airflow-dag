@@ -31,6 +31,7 @@ def get_all_a_stock():
 
         while not is_last_page:
             url = config.get("url_pattern").format(pn = pn, pz = pz)
+            print(url)
             pn += 1
             rsp = session.get(url)
             if rsp.status_code == 200:
