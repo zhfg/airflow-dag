@@ -161,17 +161,17 @@ with DAG(
         'requests',
         'minio',
     ]
-    task_1 = PythonVirtualenvOperator(
-        task_id="stock_from_east_monery",
-        requirements=requirements,
-        python_callable=stock_from_east_monery,
-    )
+    # task_1 = PythonVirtualenvOperator(
+    #     task_id="stock_from_east_monery",
+    #     requirements=requirements,
+    #     python_callable=stock_from_east_monery,
+    # )
 
-    task_2 = PythonVirtualenvOperator(
-        task_id = "daily_kline_from_east_monery",
-        requirements=requirements,
-        python_callable=daily_kline_from_east_monery,
-    )
+    # task_2 = PythonVirtualenvOperator(
+    #     task_id = "daily_kline_from_east_monery",
+    #     requirements=requirements,
+    #     python_callable=daily_kline_from_east_monery,
+    # )
 
     task_3 = PythonVirtualenvOperator(
         task_id = "find_wiat_stocks",
