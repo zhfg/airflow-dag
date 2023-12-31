@@ -12,6 +12,7 @@ with DAG(
         from threading import Thread
         from time import sleep, ctime
         import sys, os, time
+        sys.path.append("/opt/bitnami/airflow/dags/git_airflow-dag/dags")
         time.sleep(60)
         from eastmonery.stock import get_all_a_stock, get_kline, get_stock_detail
         # print(sys.path)
