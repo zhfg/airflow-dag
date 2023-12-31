@@ -18,8 +18,10 @@ def minio_update_file(client: Minio, bucket: str, src: bytes, dest: str):
         print("Bucket", bucket, "already exists")
 
     # Upload the file, renaming it in the process
+    src_length = len(src)
     client.put_object(
         bucket, dest, src,
+        length = src_length,
     )
     print(
         src, "successfully uploaded as object",
