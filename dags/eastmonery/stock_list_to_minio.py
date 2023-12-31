@@ -13,7 +13,7 @@ with DAG(
         # from tqdm import tqdm
         from threading import Thread
         from time import sleep, ctime
-        import sys, os, time
+        import sys, os, time, json
         
         bucket = "stock"
         minio_endpoint = "192.168.1.151:9003"
@@ -36,7 +36,7 @@ with DAG(
         minio_update_file(
             minio_client,
             bucket=bucket,
-            src=stocks,
+            src=json.loads(stocks),
             dest="test.json"
         )
 
