@@ -134,7 +134,7 @@ with DAG(
             day_kline = minio_get_stock_kline(client=minio_client, bucket=bucket, market=market, code=code)
             # 统计最后10个交易日的连续涨停
             dktotal = day_kline.get("data").get("dktotal")
-            last_10_datas = day_kline.get("data").get("klines")[dktotal-10: -1]
+            last_10_datas = day_kline.get("data").get("klines")[-10: -1]
             print(last_10_datas)
             # b, i, c = count_continual_limit_up(stock.symbol, last_10_datas)
 
