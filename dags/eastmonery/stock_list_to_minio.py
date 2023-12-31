@@ -82,7 +82,8 @@ with DAG(
             minio_upload_daily_kline(
                 minio_client,
                 bucket=bucket,
-                src=data, market=market
+                src=data, market=market,
+                code=code,
             )
 
     requirements = [
