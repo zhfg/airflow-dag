@@ -16,7 +16,7 @@ with DAG(
         import sys, os, time
         
         bucket = "stock"
-        minio_endpoint = "http://192.168.1.151:9003"
+        minio_endpoint = "192.168.1.151:9003"
         access_key = "Eecd8UOBiMxiVGnPHXcq"
         secret_key = "Ap2j4yY7aJ2bq870f6xuYp5axI66ZXcBKb6CeKwb"
 
