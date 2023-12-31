@@ -174,7 +174,7 @@ with DAG(
     )
 
     task_3 = PythonVirtualenvOperator(
-        task_id = "daily_kline_from_east_monery",
+        task_id = "find_wiat_stocks",
         requirements=requirements,
         python_callable=find_want_stocks,
     )
