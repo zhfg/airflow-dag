@@ -68,7 +68,7 @@ with DAG(
 
         from concurrent.futures import ThreadPoolExecutor, as_completed
         
-        stocks_file = minio_get_stock_list()
+        stocks_file = minio_get_stock_list(minio_client, bucket)
         print(stocks_file)
         # stocks_str = json.dumps({"all_stocks": stocks})
         # stocks_len = len(stocks_str)
