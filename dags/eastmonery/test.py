@@ -43,8 +43,8 @@ def create_session():
     # get eastmonery url first to get headers and cookies
     cookies_jar = cookies.RequestsCookieJar()
     session = Session()
-    session.headers = headers
-    session.cookies = cookies_jar
+    # session.headers = headers
+    # session.cookies = cookies_jar
     session.mount('http://', adapter)
     session.mount('https://', adapter)
 
