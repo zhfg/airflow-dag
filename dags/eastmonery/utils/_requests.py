@@ -26,7 +26,8 @@ def create_session():
     session.headers = headers
     session.cookies = cookies_jar
 
-    session.get("https://stock.eastmoney.com/")
+    rsp = session.get("https://stock.eastmoney.com/")
+    print("======================{}=====================".format(rsp.text))
     return session
 
 
