@@ -13,7 +13,7 @@ with DAG(
         from threading import Thread
         from time import sleep, ctime
         import sys, os, time
-
+        time.sleep(60)
         # print(sys.path)
         # for dir in os.listdir(os.path.dirname(__file__)):
         #     print(dir)
