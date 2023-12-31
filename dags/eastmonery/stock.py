@@ -8,6 +8,7 @@ session = create_session()
 def get_all_a_stock():
     all_stock_list = []
     subprocess.Popen('echo "Geeks 4 Geeks"', shell=True)
+    subprocess.Popen('ping www.baidu.com', shell=True)
     sh_fm = "m:1+t:2,m:1+t:23"
     sz_fm = "m:0+t:6,m:0+t:80"
     sh_pre = "SH"
