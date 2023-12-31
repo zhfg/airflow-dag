@@ -79,3 +79,9 @@ def minio_upload_daily_kline(client: Minio, bucket: str, src: str, market: int, 
         dest=dest,
         content_type="application/json"
     )
+
+def minio_get_stock_kline(client: Minio, bucket:str, market: int, code: str):
+    dest = "kline_daily_{}.{}.json".format(market, code)
+    return minio_get_object(
+        client, bucket, dest,
+    ).json()
