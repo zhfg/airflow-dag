@@ -58,6 +58,7 @@ with DAG(
             minio_update_file, 
             minio_upload_stock_list,
             minio_get_stock_list,
+            minio_upload_daily_kline,
             )
         from eastmonery.stock import get_all_a_stock, get_kline, get_stock_detail
         minio_client = create_minio_client(
@@ -68,15 +69,20 @@ with DAG(
 
         from concurrent.futures import ThreadPoolExecutor, as_completed
         
-        stocks_file = minio_get_stock_list(minio_client, bucket)
-        print(stocks_file)
-        # stocks_str = json.dumps({"all_stocks": stocks})
-        # stocks_len = len(stocks_str)
-        # minio_upload_stock_list(
-        #     minio_client,
-        #     bucket=bucket,
-        #     src=stocks_str,
-        # )
+        stocks = minio_get_stock_list(minio_client, bucket)
+        for stock in stocks:
+            name = stock.get("name")
+            market=stock.get("market")
+            code = stock.get("code")
+            data = get_kline(
+                market=market,
+                code = code,
+            )
+            minio_upload_daily_kline(
+                minio_client,
+                bucket=bucket,
+                src=data, market=market
+            )
 
     requirements = [
         'requests',
