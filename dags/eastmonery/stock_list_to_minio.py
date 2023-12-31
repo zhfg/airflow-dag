@@ -1,13 +1,20 @@
 from airflow import DAG, task
 from datetime import datetime
 from airflow.operators.python import PythonVirtualenvOperator
+from pendulum import datetime, duration
 
-
+dag_args = {
+    "retries": 5,
+    "retry_delay": duration(seconds=2),
+    "retry_exponential_backoff": True,
+    "max_retry_delay": duration(hours=3),
+}
 
 with DAG(
     dag_id="sync_stack_list_from_east_monery_to_minio",
     start_date=datetime(2023,12,30),
     schedule="@daily",
+    default_args=dag_args,
 ):
     def stock_from_east_monery():
         # from tqdm import tqdm
@@ -95,7 +102,8 @@ with DAG(
         requirements=requirements,
         python_callable=stock_from_east_monery,
     )
-
+    task_2_group = []
+    stocks = minio_get_stock_list(minio_client, bucket)
     task_2 = PythonVirtualenvOperator(
         task_id = "daily_kline_from_east_monery",
         requirements=requirements,
