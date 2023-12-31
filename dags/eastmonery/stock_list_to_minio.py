@@ -70,10 +70,8 @@ with DAG(
         from concurrent.futures import ThreadPoolExecutor, as_completed
         
         stocks = minio_get_stock_list(minio_client, bucket)
-        print(stocks, type(stocks))
         for stock in stocks.get("all_stocks"):
             print(stock, type(stock))
-            stock = json.loads(stock)
             name = stock.get("name")
             market=stock.get("market")
             code = stock.get("code")
