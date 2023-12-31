@@ -1,11 +1,13 @@
 from eastmonery.utils._requests import create_session
 from datetime import datetime
+import subprocess
 import json
+
 session = create_session()
 
 def get_all_a_stock():
     all_stock_list = []
-
+    subprocess.Popen('echo "Geeks 4 Geeks"', shell=True)
     sh_fm = "m:1+t:2,m:1+t:23"
     sz_fm = "m:0+t:6,m:0+t:80"
     sh_pre = "SH"
@@ -17,15 +19,16 @@ def get_all_a_stock():
         "sh": dict(market=1, url_pattern = sh_a_url, fm=sh_fm, pre=sh_pre),
         "sz": dict(market=0, url_pattern = sz_a_url, fm=sz_fm, pre=sz_pre)
     }
-    for market in stock_configs.keys():
-        config = stock_configs.get(market)
-        pn = 1
-        pz = 1000
-        is_last_page = False
-        while not is_last_page:
-            url = config.get("url_pattern").format(pn = pn, pz = pz)
-            pn += 1
-            rsp = session.get("https://www.baidu.com")
+    # for market in stock_configs.keys():
+    #     config = stock_configs.get(market)
+    #     pn = 1
+    #     pz = 1000
+    #     is_last_page = False
+
+        # while not is_last_page:
+        #     url = config.get("url_pattern").format(pn = pn, pz = pz)
+        #     pn += 1
+        #     rsp = session.get(url)
             # if rsp.status_code == 200:
             #     rsp_json_data_diff = json.loads(rsp.text).get("data").get("diff")
 
