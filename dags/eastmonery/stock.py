@@ -6,7 +6,7 @@ import requests
 
 # session = create_session()
 
-def get_all_a_stock():
+def get_all_a_stock(type="json"):
     all_stock_list = []
     # subprocess.Popen('echo "Geeks 4 Geeks"', shell=True)
     # subprocess.Popen('curl https://www.baidu.com', shell=True)
