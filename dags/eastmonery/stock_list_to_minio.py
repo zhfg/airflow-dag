@@ -93,7 +93,7 @@ with DAG(
                 code=code,
             )
 
-    def find_want_stocks(stock_list, save_path=None):
+    def find_want_stocks():
         from threading import Thread
         from time import sleep, ctime
         import sys, os, time, json, io
