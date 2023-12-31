@@ -1,7 +1,6 @@
 from eastmonery.utils._requests import create_session
 from datetime import datetime
 import json
-from tqdm import tqdm
 session = create_session()
 
 def get_all_a_stock():
