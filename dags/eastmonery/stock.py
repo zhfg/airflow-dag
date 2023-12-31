@@ -94,7 +94,7 @@ def get_kline(market, code, klt=101, fq=0, pg_size=3000, end_data=int(datetime.t
     ## 1：前复权
     ## 2: 后复权
     url = kline_url.format(market=market, code=code, klt=101, fq=0, pg_size=3000, end_date=int(datetime.timestamp(datetime.now())*1000))
-
+    print(url)
     data = json.loads(
         requests.get(url).text
     )
