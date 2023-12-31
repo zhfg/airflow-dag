@@ -121,7 +121,7 @@ with DAG(
 
         from concurrent.futures import ThreadPoolExecutor, as_completed
         
-        stocks = minio_get_stock_list(minio_client, bucket)
+        stocks = minio_get_stock_list(client=minio_client, bucket=bucket, )
         satisfied_stocks: list = []
         for stock in stocks.get("all_stocks"):
             name = stock.get("name")
@@ -131,13 +131,7 @@ with DAG(
                 market=market,
                 code = code,
             )
-            minio_upload_daily_kline(
-                minio_client,
-                bucket=bucket,
-                src=json.dumps(data), market=market,
-                code=code,
-            )
-            day_kline = minio_get_stock_kline(market=market, code=code)
+            day_kline = minio_get_stock_kline(client=minio_client, bucket=bucket, market=market, code=code)
             # 统计最后10个交易日的连续涨停
             dktotal = day_kline.get("data").get("dktotal")
             last_10_datas = day_kline.get("data").get("klines")[dktotal-10: -1]
