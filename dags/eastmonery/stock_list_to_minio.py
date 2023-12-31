@@ -95,4 +95,4 @@ with DAG(
         python_callable=daily_kline_from_east_monery,
     )
 
-    task_1 > task_2
+    task_1 >> task_2
