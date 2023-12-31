@@ -1,10 +1,10 @@
-# from eastmonery.utils._requests import create_session
+from eastmonery.utils._requests import create_session
 from datetime import datetime
 import subprocess
 import json
 import requests
 
-# session = create_session()
+session = create_session()
 
 def get_all_a_stock(type="json"):
     all_stock_list = []
@@ -96,7 +96,7 @@ def get_kline(market, code, klt=101, fq=0, pg_size=3000, end_data=int(datetime.t
     url = kline_url.format(market=market, code=code, klt=101, fq=0, pg_size=3000, end_date=int(datetime.timestamp(datetime.now())*1000))
     print(url)
     data = json.loads(
-        requests.get(url).text
+        session.get(url).text
     )
 
     return data
