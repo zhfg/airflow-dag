@@ -22,7 +22,7 @@ with DAG(
 
 
         sys.path.append("/opt/bitnami/airflow/dags/git_airflow-dag/dags")
-        from eastmonery.minio import create_minio_client, minio_update_file
+        from eastmonery.minio import create_minio_client, minio_update_file, minio_upload_stock_list
         from eastmonery.stock import get_all_a_stock, get_kline, get_stock_detail
         minio_client = create_minio_client(
             endpoint=minio_endpoint,
@@ -35,12 +35,10 @@ with DAG(
         stocks = get_all_a_stock()
         stocks_str = json.dumps({"all_stocks": stocks})
         stocks_len = len(stocks_str)
-        minio_update_file(
+        minio_upload_stock_list(
             minio_client,
             bucket=bucket,
-            src=io.BytesIO(stocks_str.encode('utf-8')),
-            length = stocks_len,
-            dest="test.json"
+            src=stocks_str,
         )
 
     requirements = [
