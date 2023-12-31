@@ -36,9 +36,40 @@ def minio_update_file(
         dest, "to bucket", bucket,
     )
 
+def minio_get_object(
+        client: Minio, 
+        bucket: str, 
+        object_name,
+        ):
+    found = client.bucket_exists(bucket)
+    if not found:
+        return None
+    else:
+        return client.get_object(
+            bucket, object_name
+        )
+    
 
 def minio_upload_stock_list(client: Minio, bucket:str, src: str):
     dest = "all_a_stock.json"
+    stocks_len = len(src)
+    minio_update_file(
+        client,
+        bucket=bucket,
+        src=io.BytesIO(src.encode('utf-8')),
+        length = stocks_len,
+        dest=dest,
+        content_type="application/json"
+    )
+
+def minio_get_stock_list(client: Minio, bucket:str):
+    dest = "all_a_stock.json"
+    return minio_get_object(
+        client, dest,
+    )
+
+def minio_upload_daily_kline(client: Minio, bucket: str, src: str, market: int, code: str):
+    dest = "kline_daily_{}.{}.json".format(market, code)
     stocks_len = len(src)
     minio_update_file(
         client,
