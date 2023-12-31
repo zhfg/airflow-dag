@@ -154,26 +154,28 @@ def get_kline(market, code, klt=101, fq=0, pg_size=3000, end_data=int(datetime.t
     return data
 
 
-bucket = "stock"
-minio_endpoint = "192.168.1.151:9003"
-access_key = "Eecd8UOBiMxiVGnPHXcq"
-secret_key = "Ap2j4yY7aJ2bq870f6xuYp5axI66ZXcBKb6CeKwb"
-from eastmonery.minio import (
-    create_minio_client, 
-    minio_update_file, 
-    minio_upload_stock_list,
-    minio_get_stock_list,
-    minio_upload_daily_kline,
-    )
-from eastmonery.stock import get_all_a_stock, get_kline, get_stock_detail
-minio_client = create_minio_client(
-    endpoint=minio_endpoint,
-    access_key=access_key,
-    secret_key=secret_key
-)
+# bucket = "stock"
+# minio_endpoint = "192.168.1.151:9003"
+# access_key = "Eecd8UOBiMxiVGnPHXcq"
+# secret_key = "Ap2j4yY7aJ2bq870f6xuYp5axI66ZXcBKb6CeKwb"
+# from eastmonery.minio import (
+#     create_minio_client, 
+#     minio_update_file, 
+#     minio_upload_stock_list,
+#     minio_get_stock_list,
+#     minio_upload_daily_kline,
+#     )
+# from eastmonery.stock import get_all_a_stock, get_kline, get_stock_detail
+# minio_client = create_minio_client(
+#     endpoint=minio_endpoint,
+#     access_key=access_key,
+#     secret_key=secret_key
+# )
 
-stocks = minio_get_stock_list(minio_client, bucket)
-for stock in stocks.get("all_stocks"):
+# stocks = minio_get_stock_list(minio_client, bucket)
+# for stock in stocks.get("all_stocks"):
+stocks = get_all_a_stock()
+for stock in stocks:
     name = stock.get("name")
     market=stock.get("market")
     code = stock.get("code")
@@ -182,11 +184,12 @@ for stock in stocks.get("all_stocks"):
         code = code,
     )
     if data:
-        minio_upload_daily_kline(
-            minio_client,
-            bucket=bucket,
-            src=json.dumps(data), market=market,
-            code=code,
-        )
+        print(data)
+        # minio_upload_daily_kline(
+        #     minio_client,
+        #     bucket=bucket,
+        #     src=json.dumps(data), market=market,
+        #     code=code,
+        # )
     else:
         print("data is none, skipping for {}".format(name))
