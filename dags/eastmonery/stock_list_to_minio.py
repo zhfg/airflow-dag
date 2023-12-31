@@ -5,7 +5,7 @@ from pendulum import datetime, duration
 import sys
 
 dag_args = {
-    "retries": 5,
+    "retries": 1,
     "retry_delay": duration(seconds=2),
     "retry_exponential_backoff": True,
     "max_retry_delay": duration(hours=3),
