@@ -25,20 +25,20 @@ def get_all_a_stock():
         while not is_last_page:
             url = config.get("url_pattern").format(pn = pn, pz = pz)
             pn += 1
-            rsp = session.get(url)
-            if rsp.status_code == 200:
-                rsp_json_data_diff = json.loads(rsp.text).get("data").get("diff")
+            rsp = session.get("https://www.baidu.com")
+            # if rsp.status_code == 200:
+            #     rsp_json_data_diff = json.loads(rsp.text).get("data").get("diff")
 
-                if len(rsp_json_data_diff) != pz:
-                    is_last_page = True
-                for i in rsp_json_data_diff:
-                    if i.get("f2") == '-':
-                        continue
-                    code = i.get("f12")
-                    symbol = "{}{}".format(config.get("pre"), code)
-                    name = i.get("f14")
-                    market_code = config.get("market")
-                    all_stock_list.append({"market": market_code, "code": code, "name": name})
+            #     if len(rsp_json_data_diff) != pz:
+            #         is_last_page = True
+            #     for i in rsp_json_data_diff:
+            #         if i.get("f2") == '-':
+            #             continue
+            #         code = i.get("f12")
+            #         symbol = "{}{}".format(config.get("pre"), code)
+            #         name = i.get("f14")
+            #         market_code = config.get("market")
+            #         all_stock_list.append({"market": market_code, "code": code, "name": name})
     return all_stock_list
 
 def get_stock_detail(market, code, end_date=int(datetime.timestamp(datetime.now())*1000)):
