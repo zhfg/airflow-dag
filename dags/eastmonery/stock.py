@@ -1,4 +1,4 @@
-from utils._requests import create_session
+from eastmonery.utils._requests import create_session
 from datetime import datetime
 import json
 from tqdm import tqdm
