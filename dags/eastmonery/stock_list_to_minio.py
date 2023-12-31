@@ -71,19 +71,20 @@ with DAG(
         
         stocks = minio_get_stock_list(minio_client, bucket)
         for stock in stocks:
-            stock = json.loads(stock)
-            name = stock.get("name")
-            market=stock.get("market")
-            code = stock.get("code")
-            data = get_kline(
-                market=market,
-                code = code,
-            )
-            minio_upload_daily_kline(
-                minio_client,
-                bucket=bucket,
-                src=data, market=market
-            )
+            print(stock, type(stock))
+            # stock = json.loads(stock)
+            # name = stock.get("name")
+            # market=stock.get("market")
+            # code = stock.get("code")
+            # data = get_kline(
+            #     market=market,
+            #     code = code,
+            # )
+            # minio_upload_daily_kline(
+            #     minio_client,
+            #     bucket=bucket,
+            #     src=data, market=market
+            # )
 
     requirements = [
         'requests',
