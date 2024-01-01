@@ -137,7 +137,7 @@ with DAG(
             dktotal = day_kline.get("data").get("dktotal")
             last_10_datas = day_kline.get("data").get("klines")[-10: -1]
             print(last_10_datas)
-            break;
+            return "ok"
             # b, i, c = count_continual_limit_up(stock.symbol, last_10_datas)
 
             # ## 过滤连续2个或3个涨停的股票
