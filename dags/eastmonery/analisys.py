@@ -65,7 +65,7 @@ def find_highst_close_index(datas: list):
     highest_close_index: int = 0
     index: int = 0
     for d in datas:
-        current_close: float = d[2]
+        current_close: float = float(d[2])
         if current_close > highest_close:
             highest_close = current_close
             highest_close_index = index
