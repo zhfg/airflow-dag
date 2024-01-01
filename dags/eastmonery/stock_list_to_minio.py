@@ -98,8 +98,6 @@ with DAG(
         from threading import Thread
         from time import sleep, ctime
         import sys, os, time, json, io
-        from eastmonery.analisys import count_continual_limit_up
-        
         bucket = "stock"
         minio_endpoint = "192.168.1.151:9003"
         access_key = "Eecd8UOBiMxiVGnPHXcq"
@@ -120,7 +118,7 @@ with DAG(
             access_key=access_key,
             secret_key=secret_key
         )
-
+        from eastmonery.analisys import count_continual_limit_up
         from concurrent.futures import ThreadPoolExecutor, as_completed
         
         stocks = minio_get_stock_list(client=minio_client, bucket=bucket, )
