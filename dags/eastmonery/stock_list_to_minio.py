@@ -136,7 +136,8 @@ with DAG(
             # 统计最后10个交易日的连续涨停
             dktotal = day_kline.get("data").get("dktotal")
             last_10_datas = day_kline.get("data").get("klines")[-10: -1]
-            print(last_10_datas)
+            last_10_datas = [x.split(',') for x in last_10_datas]
+            print(name, market, code, last_10_datas)
             return "ok"
             # b, i, c = count_continual_limit_up(stock.symbol, last_10_datas)
 
