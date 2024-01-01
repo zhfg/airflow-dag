@@ -134,12 +134,12 @@ with DAG(
             day_kline = minio_get_stock_kline(client=minio_client, bucket=bucket, market=market, code=code)
             # 统计最后10个交易日的连续涨停
             dktotal = day_kline.get("data").get("dktotal")
-            last_10_datas = day_kline.get("data").get("klines")[-10:]
+            last_10_datas = day_kline.get("data").get("klines")[-30:]
             last_10_datas = [x.split(',') for x in last_10_datas]
             b, i, c = count_continual_limit_up(name, market, code, last_10_datas)
 
             ## 过滤连续2个或3个涨停的股票
-            if c == 2 or c == 3:
+            if c > 2 or c > 3:
                 #  过去10个交易日最高价出现在这两个交易日上
                 ## 找到最高收盘价所在的位置, 对比其所在的数据索引与连续涨停的位，判断其是否与最后一个涨停所在的位置是否一致
                 highest_close_index, highest_close = find_highst_close_index(last_10_datas)

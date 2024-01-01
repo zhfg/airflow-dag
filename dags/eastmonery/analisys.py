@@ -35,7 +35,7 @@ def count_continual_limit_up(name, market, code, datas):
     # 返回：False/True, index, count
 
     # 数据序列的长度少于10直接返回
-    if len(datas) < 10:
+    if len(datas) < 30:
         return False, 0, 0
     last_10_high: float = 0.00  # 10日内最高价
     current_close: float = 0.00 # 当日收盘价
