@@ -59,3 +59,16 @@ def count_continual_limit_up(name, market, code, datas):
         return True, last_day_limit_up_index, count_limit_up
     else:
         return False, 0, 0
+    
+def find_highst_close_index(datas: list):
+    highest_close: float = 0.00
+    highest_close_index: int = 0
+    index: int = 0
+    for d in datas:
+        current_close: float = d[2]
+        if current_close > highest_close:
+            highest_close = current_close
+            highest_close_index = index
+        index += 1
+        
+    return highest_close_index, highest_close
