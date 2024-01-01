@@ -138,9 +138,11 @@ with DAG(
             dktotal = day_kline.get("data").get("dktotal")
             last_10_datas = day_kline.get("data").get("klines")[-10:]
             last_10_datas = [x.split(',') for x in last_10_datas]
-            print(name, market, code, last_10_datas)
+
 
             b, i, c = count_continual_limit_up(stock.symbol, last_10_datas)
+
+            print(name, market, code, b, i, c)
 
             # ## 过滤连续2个或3个涨停的股票
             # if c == 2 or c == 3:
