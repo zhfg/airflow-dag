@@ -144,8 +144,8 @@ with DAG(
                 ## 找到最高收盘价所在的位置, 对比其所在的数据索引与连续涨停的位，判断其是否与最后一个涨停所在的位置是否一致
                 highest_close_index, highest_close = find_highst_close_index(last_10_datas)
                 if highest_close_index == i or highest_close_index == i + 1:
-                    close_rate = last_10_datas[-1].close / highest_close  
-                    print("name: {}, market: {}, code: {}, 最大连续涨停次数: {}, 最高价出现的位置: {}, 最高价格: {}, 连椟涨停最后一个位置: {}, 收盘价与最高价的比值: {}, 今日收盘: {}, 10日内最高价: {}".format(name, market, code, c, highest_close_index, highest_close, i, close_rate, last_10_datas[-1].close, highest_close))           
+                    close_rate = last_10_datas[-1][2] / highest_close  
+                    print("name: {}, market: {}, code: {}, 最大连续涨停次数: {}, 最高价出现的位置: {}, 最高价格: {}, 连椟涨停最后一个位置: {}, 收盘价与最高价的比值: {}, 今日收盘: {}, 10日内最高价: {}".format(name, market, code, c, highest_close_index, highest_close, i, close_rate, last_10_datas[-1][2], highest_close))           
                     # if close_rate > 0.41 and close_rate < 0.51:
                     #     print("symbol: {}, 最大连续涨停次数: {}, 最高价出现的位置: {}, 最高价格: {}, 连椟涨停最后一个位置: {}, 收盘价与最高价的比值: {}, 今日收盘: {}, 10日内最高价: {}".format(stock.symbol, c, highest_close_index, highest_close, i, close_rate, last_10_datas[-1].close, highest_close))
                     #     satisfied_stocks.append(stock)  
