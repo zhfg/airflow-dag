@@ -98,6 +98,7 @@ with DAG(
         from threading import Thread
         from time import sleep, ctime
         import sys, os, time, json, io
+        from eastmonery.analisys import count_continual_limit_up
         
         bucket = "stock"
         minio_endpoint = "192.168.1.151:9003"
@@ -135,11 +136,11 @@ with DAG(
             day_kline = minio_get_stock_kline(client=minio_client, bucket=bucket, market=market, code=code)
             # 统计最后10个交易日的连续涨停
             dktotal = day_kline.get("data").get("dktotal")
-            last_10_datas = day_kline.get("data").get("klines")[-10: -1]
+            last_10_datas = day_kline.get("data").get("klines")[-10:]
             last_10_datas = [x.split(',') for x in last_10_datas]
             print(name, market, code, last_10_datas)
-            return "ok"
-            # b, i, c = count_continual_limit_up(stock.symbol, last_10_datas)
+
+            b, i, c = count_continual_limit_up(stock.symbol, last_10_datas)
 
             # ## 过滤连续2个或3个涨停的股票
             # if c == 2 or c == 3:
