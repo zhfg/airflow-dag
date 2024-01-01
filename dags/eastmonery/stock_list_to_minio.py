@@ -138,7 +138,7 @@ with DAG(
             last_10_datas = [x.split(',') for x in last_10_datas]
 
 
-            b, i, c = count_continual_limit_up(stock.symbol, last_10_datas)
+            b, i, c = count_continual_limit_up(name, market, code, last_10_datas)
 
             print(name, market, code, b, i, c)
 
