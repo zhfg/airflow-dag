@@ -6,23 +6,23 @@ def is_limit_up(market: int, code: str, data: list):
     # print(symbol, data.timestamp, data.percent)
     if market==1:
         if code.startswith("688"):
-            if data[8] >= 19.95:
+            if float(data[8]) >= 19.95:
                 return True
             else:
                 return False
         else:
-            if data[8] >= 9.95:
+            if float(data[8]) >= 9.95:
                 return True
             else:
                 return False            
     if market==0:
         if code.startswith("300"):
-            if data[8] >= 19.95:
+            if float(data[8]) >= 19.95:
                 return True
             else:
                 return False
         elif code.startswith("00"):
-            if data[8] >= 9.95:
+            if float(data[8]) >= 9.95:
                 return True
             else:
                 return False 
