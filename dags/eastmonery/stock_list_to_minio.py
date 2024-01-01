@@ -127,10 +127,6 @@ with DAG(
             name = stock.get("name")
             market=stock.get("market")
             code = stock.get("code")
-            data = get_kline(
-                market=market,
-                code = code,
-            )
             day_kline = minio_get_stock_kline(client=minio_client, bucket=bucket, market=market, code=code)
             # 统计最后10个交易日的连续涨停
             dktotal = day_kline.get("data").get("dktotal")
@@ -156,23 +152,23 @@ with DAG(
         'requests',
         'minio',
     ]
-    # task_1 = PythonVirtualenvOperator(
-    #     task_id="stock_from_east_monery",
-    #     requirements=requirements,
-    #     python_callable=stock_from_east_monery,
-    # )
-
-    # task_2 = PythonVirtualenvOperator(
-    #     task_id = "daily_kline_from_east_monery",
-    #     requirements=requirements,
-    #     python_callable=daily_kline_from_east_monery,
-    # )
-
-    task_3 = PythonVirtualenvOperator(
-        task_id = "find_wiat_stocks",
+    task_1 = PythonVirtualenvOperator(
+        task_id="stock_from_east_monery",
         requirements=requirements,
-        python_callable=find_want_stocks,
+        python_callable=stock_from_east_monery,
     )
 
-    # task_1 >> task_2
-    task_3
+    task_2 = PythonVirtualenvOperator(
+        task_id = "daily_kline_from_east_monery",
+        requirements=requirements,
+        python_callable=daily_kline_from_east_monery,
+    )
+
+    # task_3 = PythonVirtualenvOperator(
+    #     task_id = "find_wiat_stocks",
+    #     requirements=requirements,
+    #     python_callable=find_want_stocks,
+    # )
+
+    task_1 >> task_2
+    # task_3

@@ -2,7 +2,7 @@
 
 def is_limit_up(market: int, code: str, data: list):
     # data
-    # 日期，今天，今收，最新价，最低价，成交价，成交量，振幅，涨跌幅， 涨跌额，换手率
+    # 日期，今开，今收，最新价，最低价，成交价，成交量，振幅，涨跌幅， 涨跌额，换手率
     # print(symbol, data.timestamp, data.percent)
     if market==1:
         if code.startswith("688"):
