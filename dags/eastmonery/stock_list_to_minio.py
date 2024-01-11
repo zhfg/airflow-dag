@@ -5,7 +5,7 @@ from pendulum import datetime, duration
 import sys
 sys.path.append("/opt/bitnami/airflow/dags/git_airflow-dag/dags")
 
-from dags.eastmonery.utils.stock import stock_from_east_monery
+from eastmonery.utils.stock import stock_from_east_monery
 
 dag_args = {
     "retries": 1,
