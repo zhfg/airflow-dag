@@ -161,7 +161,7 @@ with DAG(
     task_1 = ExternalPythonOperator(
         task_id="stock_from_east_monery",
         python_callable=task_stock_from_east_monery,
-        python="/venvs/airflow"
+        python="/venvs/airflow/bin/python"
     )
 
     # task_2 = PythonVirtualenvOperator(
