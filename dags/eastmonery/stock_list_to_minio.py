@@ -1,6 +1,6 @@
 from airflow import DAG, task
 from datetime import datetime
-from airflow.operators.python import PythonVirtualenvOperator
+from airflow.operators.python import PythonVirtualenvOperator, ExternalPythonOperator
 from pendulum import datetime, duration
 import sys
 sys.path.append("/opt/bitnami/airflow/dags/git_airflow-dag/dags")
@@ -155,17 +155,17 @@ with DAG(
         'requests',
         'minio',
     ]
-    task_1 = PythonVirtualenvOperator(
+    task_1 = ExternalPythonOperator(
         task_id="stock_from_east_monery",
-        requirements=requirements,
         python_callable=stock_from_east_monery,
+        python="/venvs/airflow"
     )
 
-    task_2 = PythonVirtualenvOperator(
-        task_id = "daily_kline_from_east_monery",
-        requirements=requirements,
-        python_callable=daily_kline_from_east_monery,
-    )
+    # task_2 = PythonVirtualenvOperator(
+    #     task_id = "daily_kline_from_east_monery",
+    #     requirements=requirements,
+    #     python_callable=daily_kline_from_east_monery,
+    # )
 
     # task_3 = PythonVirtualenvOperator(
     #     task_id = "find_wiat_stocks",
@@ -173,5 +173,5 @@ with DAG(
     #     python_callable=find_want_stocks,
     # )
 
-    task_1 >> task_2
+    task_1 
     # task_3
