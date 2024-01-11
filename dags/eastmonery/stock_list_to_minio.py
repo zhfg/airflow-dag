@@ -17,12 +17,14 @@ with DAG(
     schedule="@daily",
     default_args=dag_args,
 ):
-    import sys
-    sys.path.append("/opt/bitnami/airflow/dags/git_airflow-dag/dags")
 
-    from eastmonery.utils.stock import stock_from_east_monery
     
     stocks = []
+    def task_stock_from_east_monery():
+            import sys
+            sys.path.append("/opt/bitnami/airflow/dags/git_airflow-dag/dags")
+
+            from eastmonery.utils.stock import stock_from_east_monery
     # def stock_from_east_monery():
     #     from threading import Thread
     #     from time import sleep, ctime
@@ -158,7 +160,7 @@ with DAG(
     ]
     task_1 = ExternalPythonOperator(
         task_id="stock_from_east_monery",
-        python_callable=stock_from_east_monery,
+        python_callable=task_stock_from_east_monery,
         python="/venvs/airflow"
     )
 
