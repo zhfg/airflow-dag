@@ -24,15 +24,15 @@ with DAG(
     
     stocks = []
     def task_stock_from_east_monery():
-            import sys
-            sys.path.append("/opt/bitnami/airflow/dags/git_airflow-dag/dags")
+        import sys
+        sys.path.append("/opt/bitnami/airflow/dags/git_airflow-dag/dags")
 
-            from eastmonery.utils.stock import stock_from_east_monery
-            stock_from_east_monery(
-                 minio_endpoint,
-                 access_key,
-                 secret_key,
-                 )
+        from eastmonery.utils.stock import stock_from_east_monery
+        stock_from_east_monery(
+                minio_endpoint,
+                access_key,
+                secret_key,
+                )
     # def stock_from_east_monery():
     #     from threading import Thread
     #     from time import sleep, ctime
