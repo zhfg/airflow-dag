@@ -2,10 +2,7 @@ from airflow import DAG, task
 from datetime import datetime
 from airflow.operators.python import PythonVirtualenvOperator, ExternalPythonOperator
 from pendulum import datetime, duration
-import sys
-sys.path.append("/opt/bitnami/airflow/dags/git_airflow-dag/dags")
 
-from eastmonery.utils.stock import stock_from_east_monery
 
 dag_args = {
     "retries": 1,
@@ -20,6 +17,10 @@ with DAG(
     schedule="@daily",
     default_args=dag_args,
 ):
+    import sys
+    sys.path.append("/opt/bitnami/airflow/dags/git_airflow-dag/dags")
+
+    from eastmonery.utils.stock import stock_from_east_monery
     
     stocks = []
     # def stock_from_east_monery():
