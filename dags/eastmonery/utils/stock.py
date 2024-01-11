@@ -1,4 +1,4 @@
-from eastmonery.utils._requests import create_session
+
 from datetime import datetime
 import json
 from threading import Thread
@@ -6,6 +6,7 @@ from time import sleep, ctime
 import sys, os, time, json, io
 
 sys.path.append("/opt/bitnami/airflow/dags/git_airflow-dag/dags")
+from eastmonery.utils._requests import create_session
 from eastmonery.utils._minio import create_minio_client, minio_update_file, minio_upload_stock_list, minio_get_stock_list
 from eastmonery.utils.stock import get_all_a_stock, get_kline, get_stock_detail
 
