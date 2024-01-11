@@ -1,8 +1,13 @@
 from eastmonery.utils._requests import create_session
 from datetime import datetime
-import subprocess
 import json
-import requests
+from threading import Thread
+from time import sleep, ctime
+import sys, os, time, json, io
+
+sys.path.append("/opt/bitnami/airflow/dags/git_airflow-dag/dags")
+from eastmonery.minio import create_minio_client, minio_update_file, minio_upload_stock_list, minio_get_stock_list
+from eastmonery.stock import get_all_a_stock, get_kline, get_stock_detail
 
 session = create_session()
 
@@ -103,3 +108,28 @@ def get_kline(market, code, klt=101, fq=0, pg_size=3000, end_data=int(datetime.t
         print(e)
 
     return data
+
+
+
+def stock_from_east_monery(bucket,minio_endpoint, minio_access_key,minio_secret_key):   
+    # bucket = "stock"
+    # minio_endpoint = "192.168.1.151:9003"
+    # access_key = "Eecd8UOBiMxiVGnPHXcq"
+    # secret_key = "Ap2j4yY7aJ2bq870f6xuYp5axI66ZXcBKb6CeKwb"
+
+    minio_client = create_minio_client(
+        endpoint=minio_endpoint,
+        access_key=minio_access_key,
+        secret_key=minio_secret_key
+    )
+
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    stocks = get_all_a_stock()
+    stocks_str = json.dumps({"all_stocks": stocks})
+    stocks_len = len(stocks_str)
+    minio_upload_stock_list(
+        minio_client,
+        bucket=bucket,
+        src=stocks_str,
+    )
