@@ -2,10 +2,7 @@ from airflow import DAG, task
 from datetime import datetime
 from airflow.operators.python import PythonVirtualenvOperator, ExternalPythonOperator
 from pendulum import datetime, duration
-bucket = "stock"
-minio_endpoint = "192.168.1.151:9003"
-access_key = "Eecd8UOBiMxiVGnPHXcq"
-secret_key = "Ap2j4yY7aJ2bq870f6xuYp5axI66ZXcBKb6CeKwb"
+
 
 dag_args = {
     "retries": 1,
@@ -20,7 +17,10 @@ with DAG(
     schedule="@daily",
     default_args=dag_args,
 ):
-
+    bucket = "stock"
+    minio_endpoint = "192.168.1.151:9003"
+    access_key = "Eecd8UOBiMxiVGnPHXcq"
+    secret_key = "Ap2j4yY7aJ2bq870f6xuYp5axI66ZXcBKb6CeKwb"
     
     stocks = []
     def task_stock_from_east_monery():
