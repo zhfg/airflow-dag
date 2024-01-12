@@ -33,33 +33,6 @@ with DAG(
                 access_key,
                 secret_key,
                 )
-    # def stock_from_east_monery():
-    #     from threading import Thread
-    #     from time import sleep, ctime
-    #     import sys, os, time, json, io
-        
-
-
-
-    #     sys.path.append("/opt/bitnami/airflow/dags/git_airflow-dag/dags")
-    #     from eastmonery.minio import create_minio_client, minio_update_file, minio_upload_stock_list, minio_get_stock_list
-    #     from eastmonery.stock import get_all_a_stock, get_kline, get_stock_detail
-    #     minio_client = create_minio_client(
-    #         endpoint=minio_endpoint,
-    #         access_key=access_key,
-    #         secret_key=secret_key
-    #     )
-
-    #     from concurrent.futures import ThreadPoolExecutor, as_completed
-
-    #     stocks = get_all_a_stock()
-    #     stocks_str = json.dumps({"all_stocks": stocks})
-    #     stocks_len = len(stocks_str)
-    #     minio_upload_stock_list(
-    #         minio_client,
-    #         bucket=bucket,
-    #         src=stocks_str,
-    #     )
 
     def daily_kline_from_east_monery():
         from threading import Thread
