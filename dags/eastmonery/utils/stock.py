@@ -126,3 +126,38 @@ def stock_from_east_monery(bucket,minio_endpoint, minio_access_key,minio_secret_
         bucket=bucket,
         src=stocks_str,
     )
+
+
+def daily_kline_from_east_monery(bucket,minio_endpoint, minio_access_key,minio_secret_key):
+    from eastmonery.utils._minio import (
+        create_minio_client, 
+        minio_update_file, 
+        minio_upload_stock_list,
+        minio_get_stock_list,
+        minio_upload_daily_kline,
+        )
+    from eastmonery.utils.stock import get_all_a_stock, get_kline, get_stock_detail
+    minio_client = create_minio_client(
+        endpoint=minio_endpoint,
+        access_key=minio_access_key,
+        secret_key=minio_secret_key
+    )
+
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    
+    stocks = minio_get_stock_list(minio_client, bucket)
+    for stock in stocks.get("all_stocks"):
+        name = stock.get("name")
+        market=stock.get("market")
+        code = stock.get("code")
+        data = get_kline(
+            market=market,
+            code = code,
+        )
+        minio_upload_daily_kline(
+            minio_client,
+            bucket=bucket,
+            src=json.dumps(data), market=market,
+            code=code,
+        )
+ 
