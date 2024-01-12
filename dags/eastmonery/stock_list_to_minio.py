@@ -143,5 +143,5 @@ with DAG(
     #     python_callable=find_want_stocks,
     # )
 
-    task_1 
+    task_1 >> task_2
     # task_3
