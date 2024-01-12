@@ -24,6 +24,7 @@ with DAG(
     
     stocks = []
     def task_stock_from_east_monery(
+            bucket,
             minio_endpoint,
             access_key,
             secret_key,
@@ -33,9 +34,10 @@ with DAG(
 
         from eastmonery.utils.stock import stock_from_east_monery
         stock_from_east_monery(
-                minio_endpoint,
-                access_key,
-                secret_key,
+            bucket,
+            minio_endpoint,
+            access_key,
+            secret_key,
                 )
 
     def daily_kline_from_east_monery():
@@ -142,6 +144,7 @@ with DAG(
         python_callable=task_stock_from_east_monery,
         python="/venvs/airflow/bin/python",
         op_args=(
+            bucket,
             minio_endpoint,
             access_key,
             secret_key,
