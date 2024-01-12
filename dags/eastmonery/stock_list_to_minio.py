@@ -125,7 +125,7 @@ with DAG(
             ),
     )
 
-    task_2 = PythonVirtualenvOperator(
+    task_2 = ExternalPythonOperator(
         task_id = "daily_kline_from_east_monery",
         python="/venvs/airflow/bin/python",
         op_args=(
