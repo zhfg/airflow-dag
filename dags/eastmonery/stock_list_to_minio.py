@@ -23,7 +23,11 @@ with DAG(
     secret_key = "Ap2j4yY7aJ2bq870f6xuYp5axI66ZXcBKb6CeKwb"
     
     stocks = []
-    def task_stock_from_east_monery():
+    def task_stock_from_east_monery(
+            minio_endpoint,
+            access_key,
+            secret_key,
+                ):
         import sys
         sys.path.append("/opt/bitnami/airflow/dags/git_airflow-dag/dags")
 
@@ -132,14 +136,16 @@ with DAG(
                 # 今日收盘价与最高价的比值在41%到51%之间的股票
                 
         return satisfied_stocks
-    requirements = [
-        'requests',
-        'minio',
-    ]
+
     task_1 = ExternalPythonOperator(
         task_id="stock_from_east_monery",
         python_callable=task_stock_from_east_monery,
-        python="/venvs/airflow/bin/python"
+        python="/venvs/airflow/bin/python",
+        op_args=(
+            minio_endpoint,
+            access_key,
+            secret_key,
+            )
     )
 
     # task_2 = PythonVirtualenvOperator(
