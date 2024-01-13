@@ -94,7 +94,7 @@ def find_want_stocks(bucket,minio_endpoint, minio_access_key,minio_secret_key):
         name = stock.get("name")
         market=stock.get("market")
         code = stock.get("code")
-        day_kline = minio_get_stock_kline(client=client, bucket=bucket, market=market, code=code)
+        day_kline = minio_get_stock_kline(client=minio_client, bucket=bucket, market=market, code=code)
         klines = day_kline.get("data").get("klines")
         kline_len = len(klines)
         datas = []
