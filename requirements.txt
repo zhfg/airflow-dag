@@ -1,3 +1,4 @@
 minio
 requests
 pandas
+backtrader[plotting]
