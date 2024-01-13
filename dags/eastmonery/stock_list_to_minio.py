@@ -13,10 +13,10 @@ dag_args = {
 
 with DAG(
     dag_id="sync_stack_list_from_east_monery_to_minio",
-    start_date=datetime(2023,12,30, 15, 30),
+    start_date=datetime(2023,12,30, 15, 30, tz="CST",),
     schedule="@daily",
     default_args=dag_args,
-    tz="CST",
+
 ):
     bucket = "stock"
     minio_endpoint = "192.168.1.151:9003"
