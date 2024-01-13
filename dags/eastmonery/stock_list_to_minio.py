@@ -2,7 +2,7 @@ from airflow import DAG, task
 from datetime import datetime
 from airflow.operators.python import PythonVirtualenvOperator, ExternalPythonOperator
 from pendulum import datetime, duration
-
+from pendulum.tz.timezone import Timezone
 
 dag_args = {
     "retries": 1,
@@ -13,7 +13,7 @@ dag_args = {
 
 with DAG(
     dag_id="sync_stack_list_from_east_monery_to_minio",
-    start_date=datetime(2023,12,30, 15, 30, tz="CST",),
+    start_date=datetime(2023,12,30, 15, 30, tz=Timezone("Aisa/Shanghai"),),
     schedule="@daily",
     default_args=dag_args,
 
