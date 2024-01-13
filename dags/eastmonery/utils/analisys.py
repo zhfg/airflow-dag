@@ -87,6 +87,7 @@ def find_want_stocks(bucket,minio_endpoint, minio_access_key,minio_secret_key):
         secret_key=minio_secret_key
     )
     stocks = minio_get_stock_list(minio_client, bucket)
+    i = 0
     print("股票名称\t市场\t股票代码\t近期最高价\t近期最高价出现位置\t近期最低价\t近期最低价的位置")
     for stock in stocks.get("all_stocks"):
         i += 1
