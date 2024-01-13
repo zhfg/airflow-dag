@@ -16,6 +16,7 @@ with DAG(
     start_date=datetime(2023,12,30),
     schedule="@daily",
     default_args=dag_args,
+    tz="CST",
 ):
     bucket = "stock"
     minio_endpoint = "192.168.1.151:9003"
