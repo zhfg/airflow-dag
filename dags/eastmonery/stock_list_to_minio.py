@@ -57,7 +57,12 @@ with DAG(
             secret_key,
         )  
         
-    def task_find_want_stocks():
+    def task_find_want_stocks(
+        bucket,
+        minio_endpoint,
+        access_key,
+        secret_key,
+    ):
         import sys
         sys.path.append("/opt/bitnami/airflow/dags/git_airflow-dag/dags")
 
