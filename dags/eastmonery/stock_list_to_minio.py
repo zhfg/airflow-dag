@@ -14,7 +14,7 @@ dag_args = {
 with DAG(
     dag_id="sync_stack_list_from_east_monery_to_minio",
     start_date=datetime(2023,12,30, 15, 30, tz=8.0,),
-    schedule="@daily",
+    schedule="30 15 * * *",
     default_args=dag_args,
 
 ):
